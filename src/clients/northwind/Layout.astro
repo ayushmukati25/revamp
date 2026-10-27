@@ -1,7 +1,7 @@
 ---
-import '../styles/main.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import './styles.css';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
 
 interface Props {
   title?: string;
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const {
-  title = 'Northwind — HTML + CSS Astro starter',
+  title = 'Northwind',
   description = 'A fast, no-framework Astro starter styled with plain, class-based CSS.',
 } = Astro.props;
 ---

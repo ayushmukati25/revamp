@@ -1,0 +1,76 @@
+/*
+ * hub.css — styles for the reserved root page only. Same convention as the
+ * client stylesheets: one semantic class per element, one rule per class.
+ */
+
+:root {
+  --background: #f6f6f4;
+  --surface: #ffffff;
+  --foreground: #18181b;
+  --muted: #71717a;
+  --border: #e4e4e7;
+  --font: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hub {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 72px 16px;
+}
+
+.hub-title {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.hub-subtitle {
+  margin: 0 0 40px;
+  color: var(--muted);
+}
+
+.client-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.client-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.client-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.client-path {
+  color: var(--muted);
+  font-family: ui-monospace, monospace;
+  font-size: 14px;
+}

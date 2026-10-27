@@ -15,14 +15,28 @@ straight into the stylesheet.
 
 ## Structure
 
+This is a parent project holding one home page per client. The root page is
+reserved as an index of clients; each client gets its own folder of layout,
+components and styles, plus its own route folder.
+
 ```
 src/
-  layouts/Layout.astro      Shared <html> shell (fonts, header, footer)
-  components/               Header, Footer — reusable markup
-  pages/                    index.astro, about.astro (one file per route)
-  styles/main.css           The authored stylesheet — one rule per class
-public/                     Static assets (favicon)
+  pages/index.astro             Reserved root page that lists every client site
+  hub/                          Layout + styles for the root page only
+  pages/<client>/index.astro    A client's home page, served at /<client>/
+  clients/<client>/             That client's Layout, Header, Footer, styles.css
+public/                         Static assets (favicon)
 ```
+
+Current clients: **Northwind** (`/northwind/`).
+
+### Adding a client
+
+1. Create `src/clients/<client>/` with its `Layout.astro`, components and `styles.css`.
+2. Create `src/pages/<client>/index.astro` using that layout.
+3. Add the client to the `clients` list in `src/pages/index.astro`.
+
+Each client imports only its own stylesheet, so styles never leak between clients.
 
 ## The styling convention
 
@@ -30,7 +44,7 @@ Keep these and the visual editor stays reliable:
 
 - Style through **classes**, not inline `style=""`.
 - Give each editable element **one semantic class** (`.hero-title`, `.feature-card`).
-- Define each class with **one rule** in `src/styles/main.css`.
+- Define each class with **one rule** in that client's `styles.css`.
 - Put responsive overrides in the **`@media` block** at the bottom of the file.
 
 ## Commands
