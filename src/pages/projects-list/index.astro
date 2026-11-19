@@ -1,0 +1,25 @@
+---
+// Index of client sites, served at /projects-list/ and linked from nowhere. Add a
+// client by creating src/clients/<client>/ and src/pages/<client>-<code>/index.astro,
+// then list it here.
+import Layout from '../../hub/Layout.astro';
+
+const clients = [{ name: 'Northwind', href: '/northwind-aod9457/' }];
+---
+
+<Layout>
+  <h1 class="hub-title">Revamp</h1>
+  <p class="hub-subtitle">Client home pages in development.</p>
+  <ul class="client-list">
+    {
+      clients.map((c) => (
+        <li>
+          <a class="client-card" href={c.href}>
+            <span class="client-name">{c.name}</span>
+            <span class="client-path">{c.href}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

@@ -1,6 +1,7 @@
 /*
- * hub.css — styles for the reserved root page only. Same convention as the
- * client stylesheets: one semantic class per element, one rule per class.
+ * hub.css — styles for the root page and the projects list only. Same
+ * convention as the client stylesheets: one semantic class per element, one
+ * rule per class.
  */
 
 :root {

@@ -1,24 +1,10 @@
 ---
-// Reserved root page: an index of client sites. Add a client by creating
-// src/clients/<client>/ and src/pages/<client>/index.astro, then list it here.
+// Root page (/). Deliberately lists nothing — the client sites live at
+// unlisted URLs, and the index of them is at /projects-list/.
 import Layout from '../hub/Layout.astro';
-
-const clients = [{ name: 'Northwind', href: '/northwind/' }];
 ---
 
 <Layout>
   <h1 class="hub-title">Revamp</h1>
-  <p class="hub-subtitle">Client home pages in development.</p>
-  <ul class="client-list">
-    {
-      clients.map((c) => (
-        <li>
-          <a class="client-card" href={c.href}>
-            <span class="client-name">{c.name}</span>
-            <span class="client-path">{c.href}</span>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <p class="hub-subtitle">Nothing to see here.</p>
 </Layout>

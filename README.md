@@ -15,26 +15,33 @@ straight into the stylesheet.
 
 ## Structure
 
-This is a parent project holding one home page per client. The root page is
-reserved as an index of clients; each client gets its own folder of layout,
-components and styles, plus its own route folder.
+This is a parent project holding one home page per client. The root page
+lists nothing, so a visitor who trims a client link back to `/` doesn't find
+the other clients. Each client is served at its name plus a random code
+(`/<client>-<code>/`), so the URLs can't be guessed either. The full index
+lives at `/projects-list/`, which nothing links to. Every page is `noindex` and
+`robots.txt` disallows crawling.
 
 ```
 src/
-  pages/index.astro             Reserved root page that lists every client site
-  hub/                          Layout + styles for the root page only
-  pages/<client>/index.astro    A client's home page, served at /<client>/
-  clients/<client>/             That client's Layout, Header, Footer, styles.css
-public/                         Static assets (favicon)
+  pages/index.astro                 Root page — deliberately lists no clients
+  pages/projects-list/index.astro   Unlinked index of every client site
+  hub/                              Layout + styles for the two pages above
+  pages/<client>-<code>/index.astro A client's home page, served at /<client>-<code>/
+  clients/<client>/                 That client's Layout, Header, Footer, styles.css
+public/                             Static assets (favicon, robots.txt)
 ```
 
-Current clients: **Northwind** (`/northwind/`).
+Current clients: **Northwind** (`/northwind-aod9457/`).
 
 ### Adding a client
 
-1. Create `src/clients/<client>/` with its `Layout.astro`, components and `styles.css`.
-2. Create `src/pages/<client>/index.astro` using that layout.
-3. Add the client to the `clients` list in `src/pages/index.astro`.
+1. Create `src/clients/<client>/` with its `Layout.astro`, components and
+   `styles.css`. Include `<meta name="robots" content="noindex, nofollow" />`
+   in the layout's `<head>`.
+2. Pick a random code (three letters and four digits, e.g. `kwk3492`) and
+   create `src/pages/<client>-<code>/index.astro` using that layout.
+3. Add the client to the `clients` list in `src/pages/projects-list/index.astro`.
 
 Each client imports only its own stylesheet, so styles never leak between clients.
 
