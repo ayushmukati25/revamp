@@ -15,35 +15,41 @@ straight into the stylesheet.
 
 ## Structure
 
-This is a parent project holding one home page per client. The root page
-lists nothing, so a visitor who trims a client link back to `/` doesn't find
-the other clients. Each client is served at its name plus a random code
-(`/<client>-<code>/`), so the URLs can't be guessed either. The full index
-lives at `/projects-list/`, which nothing links to. Every page is `noindex` and
-`robots.txt` disallows crawling.
+This is a parent project holding one home page per client project. The root
+page lists nothing, so a visitor who trims a project link back to `/` doesn't
+find the others. Each project is served at its name plus a random code
+(`/<project>-<code>/`), so the URLs can't be guessed either. The full index
+lives at `/projects-catalogue-10oo2qcgx/`, which nothing links to. Every page is
+`noindex` and `robots.txt` disallows crawling.
+
+Everything a project needs lives in its own folder under `src/pages/`. Astro
+skips folders that start with `_`, so `_components/` never becomes a URL.
 
 ```
 src/
-  pages/index.astro                 Root page — deliberately lists no clients
-  pages/projects-list/index.astro   Unlinked index of every client site
-  hub/                              Layout + styles for the two pages above
-  pages/<client>-<code>/index.astro A client's home page, served at /<client>-<code>/
-  clients/<client>/                 That client's Layout, Header, Footer, styles.css
-public/                             Static assets (favicon, robots.txt)
+  pages/
+    index.astro                              Root page — deliberately lists nothing
+    projects-catalogue-10oo2qcgx/index.astro Unlinked index of every project
+    <project>-<code>/
+      index.astro                            The project's page, served at /<project>-<code>/
+      _components/                           Its Layout, Header, Footer and styles.css
+  hub/                                       Layout + styles for the root page and the index
+public/                                      Static assets (favicon, robots.txt)
 ```
 
-Current clients: **Northwind** (`/northwind-aod9457/`).
+Current projects: **Northwind** (`/northwind-aod9457/`).
 
-### Adding a client
+### Adding a project
 
-1. Create `src/clients/<client>/` with its `Layout.astro`, components and
-   `styles.css`. Include `<meta name="robots" content="noindex, nofollow" />`
-   in the layout's `<head>`.
-2. Pick a random code (three letters and four digits, e.g. `kwk3492`) and
-   create `src/pages/<client>-<code>/index.astro` using that layout.
-3. Add the client to the `clients` list in `src/pages/projects-list/index.astro`.
+1. Pick a random code (three letters and four digits, e.g. `kwk3492`).
+2. Copy `src/pages/northwind-aod9457/` to `src/pages/<project>-<code>/` and
+   rework it. Keep `<meta name="robots" content="noindex, nofollow" />` in the
+   layout's `<head>`, and point the header and footer links at the new path.
+3. Add the project to the `clients` list in
+   `src/pages/projects-catalogue-10oo2qcgx/index.astro`.
 
-Each client imports only its own stylesheet, so styles never leak between clients.
+Each project imports only its own stylesheet, so styles never leak between
+projects.
 
 ## The styling convention
 
