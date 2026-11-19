@@ -15,11 +15,11 @@ straight into the stylesheet.
 
 ## Structure
 
-This is a parent project holding one home page per client project. The root
-page lists nothing, so a visitor who trims a project link back to `/` doesn't
-find the others. Each project is served at its name plus a random code
+This is a parent project holding one home page per client project. There is no
+root page — `/` returns a 404 — so a visitor who trims a project link back to
+`/` doesn't find the others. Each project is served at its name plus a random code
 (`/<project>-<code>/`), so the URLs can't be guessed either. The full index
-lives at `/projects-catalogue-10oo2qcgx/`, which nothing links to. Every page is
+lives at `/projects-10oo2qcgx/`, which nothing links to. Every page is
 `noindex` and `robots.txt` disallows crawling.
 
 Everything a project needs lives in its own folder under `src/pages/`. Astro
@@ -28,12 +28,11 @@ skips folders that start with `_`, so `_components/` never becomes a URL.
 ```
 src/
   pages/
-    index.astro                              Root page — deliberately lists nothing
-    projects-catalogue-10oo2qcgx/index.astro Unlinked index of every project
+    projects-10oo2qcgx/index.astro           Unlinked index of every project
     <project>-<code>/
       index.astro                            The project's page, served at /<project>-<code>/
       _components/                           Its Layout, Header, Footer and styles.css
-  hub/                                       Layout + styles for the root page and the index
+  hub/                                       Layout + styles for the project index
 public/                                      Static assets (favicon, robots.txt)
 ```
 
@@ -46,7 +45,7 @@ Current projects: **Northwind** (`/northwind-aod9457/`).
    rework it. Keep `<meta name="robots" content="noindex, nofollow" />` in the
    layout's `<head>`, and point the header and footer links at the new path.
 3. Add the project to the `clients` list in
-   `src/pages/projects-catalogue-10oo2qcgx/index.astro`.
+   `src/pages/projects-10oo2qcgx/index.astro`.
 
 Each project imports only its own stylesheet, so styles never leak between
 projects.
