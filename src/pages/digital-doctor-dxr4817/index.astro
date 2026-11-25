@@ -1,0 +1,190 @@
+---
+// Digital Doctor Electronic Repairs: home page concept, served at /digital-doctor-dxr4817/.
+// Built from the "Oxblood Lab" brand concept (logo 12C). Facts come from
+// digitaldocrepairs.com; nothing here is invented.
+import Layout from './_components/Layout.astro';
+
+const phone = '(609) 994-3235';
+
+const readouts = [
+  { value: '00:45:00', label: 'Typical repair time' },
+  { value: '60 days', label: 'Repair warranty' },
+  { value: 'Mail-in', label: 'Pickup and delivery' },
+];
+
+const devices = [
+  {
+    code: 'DEV.01',
+    name: 'Phones',
+    text: 'Cracked screens, tired batteries, charging problems and software faults. Face ID and Touch ID handled with care.',
+  },
+  {
+    code: 'DEV.02',
+    name: 'Tablets',
+    text: 'Screens, batteries and charging, including iPads with glued-on glass.',
+  },
+  {
+    code: 'DEV.03',
+    name: 'Laptops',
+    text: 'Screens, batteries, software trouble and board-level repair when a part alone won’t do it.',
+  },
+  {
+    code: 'DEV.04',
+    name: 'Consoles',
+    text: 'Game consoles diagnosed and repaired, so you are back in the game, not on a waiting list.',
+  },
+];
+
+const mailSteps = [
+  {
+    n: '01',
+    title: 'Tell us about it',
+    text: 'Fill in the mail-in form with your device and what’s wrong.',
+  },
+  {
+    n: '02',
+    title: 'Pack and post',
+    text: 'We email you a form. Print it, pack it with your device and send it to the shop.',
+  },
+  {
+    n: '03',
+    title: 'Fixed and sent back',
+    text: 'We repair it, you pay once it works, and we post it straight back to you.',
+  },
+];
+
+const hours = [
+  { day: 'Monday to Friday', time: '9am to 7pm' },
+  { day: 'Saturday', time: '10am to 6pm' },
+  { day: 'Sunday', time: '10am to 4pm' },
+];
+---
+
+<Layout>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-panel">
+      <p class="hero-kicker">SYS.DIAG // Same-day repairs</p>
+      <h1 class="hero-title" id="hero-title">Back to life.</h1>
+      <p class="hero-subtitle">
+        Phones, tablets, laptops and consoles repaired in Manahawkin, NJ. Most repairs take about
+        45 minutes.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#contact">Request a quote</a>
+        <a class="btn-secondary" href="#mail-in">Mail in a device</a>
+      </div>
+      <ul class="readout-grid" aria-label="At a glance">
+        {
+          readouts.map((r) => (
+            <li class="readout">
+              <span class="readout-value">{r.value}</span>
+              <span class="readout-label">{r.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="repairs" id="repairs" aria-labelledby="repairs-title">
+    <div class="section-head">
+      <p class="section-kicker">01 // Repairs</p>
+      <h2 class="section-title" id="repairs-title">If it has a screen and a battery, we fix it.</h2>
+    </div>
+    <ul class="device-grid">
+      {
+        devices.map((d) => (
+          <li class="device-card">
+            <span class="device-code">{d.code}</span>
+            <h3 class="device-name">{d.name}</h3>
+            <p class="device-text">{d.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="repairs-note">
+      Also on the bench: data recovery and motherboard repair. Not sure what’s wrong? Bring it in
+      and we’ll find out.
+    </p>
+  </section>
+
+  <section class="mailin" id="mail-in" aria-labelledby="mailin-title">
+    <div class="mailin-intro">
+      <p class="section-kicker">02 // Mail-in</p>
+      <h2 class="section-title" id="mailin-title">Can’t get to the shop? Post it to us.</h2>
+      <p class="section-text">
+        Our mail-in service fixes your device without you leaving home. Prefer we come to you? Ask
+        about on-site repair and our mobile repair unit.
+      </p>
+      <a class="btn-primary" href="#contact">Start a mail-in repair</a>
+    </div>
+    <ol class="step-list">
+      {
+        mailSteps.map((s) => (
+          <li class="step">
+            <span class="step-number">{s.n}</span>
+            <div class="step-body">
+              <h3 class="step-title">{s.title}</h3>
+              <p class="step-text">{s.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="warranty" id="warranty" aria-labelledby="warranty-title">
+    <p class="warranty-figure" aria-hidden="true">60 days</p>
+    <div class="warranty-body">
+      <p class="section-kicker">03 // Warranty</p>
+      <h2 class="section-title" id="warranty-title">Same fault again? That’s on us.</h2>
+      <p class="section-text">
+        The repair and the parts we fit are guaranteed for 60 days. If the same fault comes back,
+        we fix it. The warranty doesn’t cover new physical or water damage, or parts we didn’t
+        supply.
+      </p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact-intro">
+      <p class="section-kicker">04 // Visit or call</p>
+      <h2 class="section-title" id="contact-title">Bring it in. We’ll take a look.</h2>
+      <p class="section-text">
+        Call for a quote, mail your device in, or walk in to the shop on Route 72.
+      </p>
+      <div class="contact-actions">
+        <a class="btn-primary" href="#mail-in">Mail in a device</a>
+        <a class="btn-secondary" href="#repairs">See what we fix</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-block">
+        <h3 class="contact-label">Shop</h3>
+        <div class="contact-row">
+          <address class="contact-address">
+            1636 Route 72 W<br />Manahawkin, NJ 08050
+          </address>
+        </div>
+      </div>
+      <div class="contact-block">
+        <h3 class="contact-label">Hours</h3>
+        <dl class="hours-list">
+          {
+            hours.map((h) => (
+              <div class="hours-row">
+                <dt class="hours-day">{h.day}</dt>
+                <dd class="hours-time">{h.time}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+      <div class="contact-block">
+        <h3 class="contact-label">Reach us</h3>
+        <p class="contact-phone">{phone}</p>
+        <p class="contact-email">info@digitaldocrepairs.com</p>
+      </div>
+    </div>
+  </section>
+</Layout>

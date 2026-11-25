@@ -1,0 +1,19 @@
+---
+// The 12C "DR ligature" mark from the brand concept: a bone stem, a signal-red
+// pick-shaped bowl and a bone leg, read together as an R (and as D + R).
+// Colours come from the --logo-stem and --logo-bowl tokens so the mark can sit
+// on dark or light backgrounds.
+interface Props {
+  class?: string;
+}
+const { class: className = 'logo-mark' } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 408 516" aria-hidden="true" focusable="false">
+  <rect class="logo-stem" x="0" y="0" width="107" height="516" rx="18"></rect>
+  <path
+    class="logo-bowl"
+    d="M147 18 Q147 0 165 0 C262 0 372 72 399 142 Q408 166 392 190 C346 262 270 342 190 342 L165 342 Q147 342 147 324 Z"
+  ></path>
+  <path class="logo-leg" d="M182 389 L259 378 L330 506 L240 506 Z"></path>
+</svg>

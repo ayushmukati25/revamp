@@ -1,0 +1,50 @@
+---
+import './styles.css';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Digital Doctor Electronic Repairs | Manahawkin, NJ',
+  description = 'Phone, tablet, laptop and console repair in Manahawkin, New Jersey. Most repairs take about 45 minutes, with a 60-day warranty and mail-in service.',
+} = Astro.props;
+
+// The 12C mark as a favicon, inlined so the project needs no file in public/.
+const favicon =
+  'data:image/svg+xml,' +
+  encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="-64 -40 536 596"><rect x="-64" y="-40" width="536" height="596" rx="110" fill="#E0402B"/><rect width="107" height="516" rx="18" fill="#EDE4DA"/><path fill="#5A1A1A" d="M147 18 Q147 0 165 0 C262 0 372 72 399 142 Q408 166 392 190 C346 262 270 342 190 342 L165 342 Q147 342 147 324 Z"/><path fill="#EDE4DA" stroke="#EDE4DA" stroke-width="16" stroke-linejoin="round" d="M182 389 L259 378 L330 506 L240 506 Z"/></svg>',
+  );
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#140B0A" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=BBH+Bogle&family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -36,7 +36,8 @@ src/
 public/                                      Static assets (favicon, robots.txt)
 ```
 
-Current projects: **Northwind** (`/northwind-aod9457/`).
+Current projects: **Northwind** (`/northwind-aod9457/`) and **Digital Doctor
+Electronic Repairs** (`/digital-doctor-dxr4817/`).
 
 ### Adding a project
 
