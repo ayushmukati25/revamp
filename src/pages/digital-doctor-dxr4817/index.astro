@@ -3,6 +3,7 @@
 // Built from the "Oxblood Lab" brand concept (logo 12C). Facts come from
 // digitaldocrepairs.com; nothing here is invented.
 import Layout from './_components/Layout.astro';
+import PatchedPhone from './_components/PatchedPhone.astro';
 
 const phone = '(609) 994-3235';
 
@@ -63,16 +64,19 @@ const hours = [
 <Layout>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-panel">
-      <p class="hero-kicker">SYS.DIAG // Same-day repairs</p>
-      <h1 class="hero-title" id="hero-title">Back to life.</h1>
-      <p class="hero-subtitle">
-        Phones, tablets, laptops and consoles repaired in Manahawkin, NJ. Most repairs take about
-        45 minutes.
-      </p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="#contact">Request a quote</a>
-        <a class="btn-secondary" href="#mail-in">Mail in a device</a>
+      <div class="hero-copy">
+        <p class="hero-kicker">SYS.DIAG // Same-day repairs</p>
+        <h1 class="hero-title" id="hero-title">Back to life.</h1>
+        <p class="hero-subtitle">
+          Phones, tablets, laptops and consoles repaired in Manahawkin, NJ. Most repairs take about
+          45 minutes.
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#contact">Request a quote</a>
+          <a class="btn-secondary" href="#mail-in">Mail in a device</a>
+        </div>
       </div>
+      <PatchedPhone class="hero-art" />
       <ul class="readout-grid" aria-label="At a glance">
         {
           readouts.map((r) => (

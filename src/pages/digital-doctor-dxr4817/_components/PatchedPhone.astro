@@ -1,0 +1,30 @@
+---
+// The 10B "Patched phone" mark from the brand concept: a bone phone outline
+// with a signal-red bandaid across it, a smiling pad in the middle and two
+// parallel stitch marks at each end. Redrawn as vector from the concept PDF,
+// which only holds it as a flat image. Decorative, so it is hidden from screen
+// readers.
+interface Props {
+  class?: string;
+}
+const { class: className = 'patched-phone' } = Astro.props;
+
+// The band is drawn level around (0, 0), then rotated -45° onto the phone.
+// Chamfered ends: 526 long, 169 wide, corners cut 38 on each leg.
+const band =
+  'M -225 -84.5 L 225 -84.5 L 263 -46.5 L 263 46.5 L 225 84.5 L -225 84.5 L -263 46.5 L -263 -46.5 Z';
+---
+
+<svg class={className} viewBox="58 58 446 630" aria-hidden="true" focusable="false">
+  <rect class="patched-phone-body" x="122" y="83" width="318" height="580" rx="60"></rect>
+  <rect class="patched-phone-notch" x="240" y="130" width="80" height="25" rx="12.5"></rect>
+  <g transform="translate(279 373) rotate(-45) scale(0.9)">
+    <path class="patched-phone-band" d={band}></path>
+    <rect class="patched-phone-pad" x="-78" y="-66" width="156" height="132" rx="10"></rect>
+    <rect class="patched-phone-face" x="-38" y="-45" width="24" height="37" rx="4"></rect>
+    <rect class="patched-phone-face" x="14" y="-45" width="24" height="37" rx="4"></rect>
+    <path class="patched-phone-smile" d="M -34 16 Q 0 52 34 16"></path>
+    <path class="patched-phone-stitch" d="M 170 -22 L 214 -22 M 170 22 L 214 22"></path>
+    <path class="patched-phone-stitch" d="M -170 22 L -214 22 M -170 -22 L -214 -22"></path>
+  </g>
+</svg>

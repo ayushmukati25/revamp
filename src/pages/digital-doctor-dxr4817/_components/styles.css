@@ -245,9 +245,58 @@ ol {
 .hero-panel {
   position: relative;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 48px;
   padding: 56px 56px 48px;
   background: var(--ember);
   border-radius: var(--radius-panel);
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
+/* The 10B patched-phone mark, sitting to the right of the headline. */
+.hero-art {
+  display: block;
+  width: clamp(153px, 17vw, 211px);
+  height: auto;
+  margin-right: 8px;
+}
+
+.patched-phone-body {
+  fill: none;
+  stroke: var(--bone);
+  stroke-width: 36;
+}
+
+.patched-phone-notch,
+.patched-phone-pad {
+  fill: var(--bone);
+}
+
+.patched-phone-band {
+  fill: var(--signal);
+}
+
+.patched-phone-face {
+  fill: var(--signal);
+}
+
+.patched-phone-smile {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 16;
+  stroke-linecap: round;
+}
+
+.patched-phone-stitch {
+  fill: none;
+  stroke: var(--bone);
+  stroke-width: 19;
+  stroke-linecap: round;
 }
 
 .hero-kicker {
@@ -265,7 +314,7 @@ ol {
   overflow-wrap: break-word;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(64px, 12vw, 168px);
+  font-size: clamp(64px, 10.5vw, 148px);
   line-height: 0.86;
   text-transform: uppercase;
   letter-spacing: -0.01em;
@@ -287,6 +336,7 @@ ol {
 }
 
 .readout-grid {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
@@ -685,8 +735,13 @@ ol {
   .hero-title,
   .hero-subtitle,
   .hero-actions,
-  .readout-grid {
+  .readout-grid,
+  .hero-art {
     animation: rise-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-art {
+    animation-delay: 0.2s;
   }
 
   .hero-title {
@@ -750,6 +805,14 @@ ol {
 
 @media (max-width: 860px) {
   .nav-links {
+    display: none;
+  }
+
+  .hero-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-art {
     display: none;
   }
 
