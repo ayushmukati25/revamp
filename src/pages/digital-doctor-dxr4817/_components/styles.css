@@ -361,8 +361,13 @@ ol {
   gap: 12px;
   padding: 24px 24px 28px;
   background: var(--ember);
+  border: 1px solid var(--line);
   border-radius: var(--radius-tile);
-  border-top: 3px solid var(--signal);
+  transition: border-color 0.15s ease;
+}
+
+.device-card:hover {
+  border-color: var(--line-strong);
 }
 
 .device-code {
@@ -373,7 +378,7 @@ ol {
 }
 
 .device-name {
-  margin: 64px 0 0;
+  margin: 48px 0 0;
   font-family: var(--font-display);
   font-weight: 400;
   font-size: 36px;
@@ -387,9 +392,43 @@ ol {
   color: var(--bone-muted);
 }
 
-.repairs-note {
-  max-width: 40em;
-  margin: 28px 0 0;
+.bench-card {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-tile);
+}
+
+.bench-head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bench-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--signal);
+}
+
+.bench-items {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.bench-text {
+  margin: 0 0 0 auto;
+  font-size: 15px;
   color: var(--bone-muted);
 }
 
@@ -496,7 +535,6 @@ ol {
   background: var(--ember);
   color: var(--bone);
   border-radius: var(--radius-panel);
-  border-top: 3px solid var(--signal);
 }
 
 .contact-block {
@@ -721,6 +759,10 @@ ol {
 
   .device-name {
     margin-top: 28px;
+  }
+
+  .bench-text {
+    margin-left: 0;
   }
 
   .mailin {
