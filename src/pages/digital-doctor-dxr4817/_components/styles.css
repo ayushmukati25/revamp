@@ -46,6 +46,12 @@ html {
   scroll-padding-top: 96px;
 }
 
+/* Lenis drives scrolling when it's active, so native smooth scroll must be
+   off or the two fight each other. */
+html.lenis {
+  scroll-behavior: auto;
+}
+
 body {
   margin: 0;
   overflow-x: clip;
@@ -363,11 +369,12 @@ ol {
   background: var(--ember);
   border: 1px solid var(--line);
   border-radius: var(--radius-tile);
-  transition: border-color 0.15s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .device-card:hover {
   border-color: var(--line-strong);
+  transform: translateY(-3px);
 }
 
 .device-code {
@@ -451,7 +458,6 @@ ol {
 .step-list {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--line);
 }
 
 .step {
@@ -460,6 +466,10 @@ ol {
   gap: 24px;
   padding: 32px 0;
   border-bottom: 1px solid var(--line);
+}
+
+.step:last-child {
+  border-bottom: 0;
 }
 
 .step-number {
@@ -654,6 +664,74 @@ ol {
   margin: 0;
   font-size: 13px;
   color: var(--bone-muted);
+}
+
+/* ── Motion ──────────────────────────────────────────────────────── */
+/* The hero settles in on load; everything else rises gently into view on
+   scroll. Both are skipped for visitors who prefer reduced motion. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-kicker,
+  .hero-title,
+  .hero-subtitle,
+  .hero-actions,
+  .readout-grid {
+    animation: rise-in 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-title {
+    animation-delay: 0.08s;
+  }
+
+  .hero-subtitle {
+    animation-delay: 0.16s;
+  }
+
+  .hero-actions {
+    animation-delay: 0.24s;
+  }
+
+  .readout-grid {
+    animation-delay: 0.32s;
+  }
+
+  .motion [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .motion [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .motion .device-card:nth-child(2).is-visible,
+  .motion .step:nth-child(2).is-visible,
+  .motion .warranty-body.is-visible,
+  .motion .contact-card.is-visible {
+    transition-delay: 0.08s;
+  }
+
+  .motion .device-card:nth-child(3).is-visible,
+  .motion .step:nth-child(3).is-visible {
+    transition-delay: 0.16s;
+  }
+
+  .motion .device-card:nth-child(4).is-visible {
+    transition-delay: 0.24s;
+  }
 }
 
 /* ── Motion preferences ──────────────────────────────────────────── */

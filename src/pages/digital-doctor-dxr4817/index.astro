@@ -87,21 +87,21 @@ const hours = [
   </section>
 
   <section class="repairs" id="repairs" aria-labelledby="repairs-title">
-    <div class="section-head">
+    <div class="section-head" data-reveal>
       <p class="section-kicker">01 // Repairs</p>
       <h2 class="section-title" id="repairs-title">If it has a screen and a battery, we fix it.</h2>
     </div>
     <ul class="device-grid">
       {
         devices.map((d) => (
-          <li class="device-card">
+          <li class="device-card" data-reveal>
             <span class="device-code">{d.code}</span>
             <h3 class="device-name">{d.name}</h3>
             <p class="device-text">{d.text}</p>
           </li>
         ))
       }
-      <li class="bench-card">
+      <li class="bench-card" data-reveal>
         <div class="bench-head">
           <p class="bench-items">Data recovery · Motherboard repair</p>
           <span class="bench-label">Also on the bench</span>
@@ -112,7 +112,7 @@ const hours = [
   </section>
 
   <section class="mailin" id="mail-in" aria-labelledby="mailin-title">
-    <div class="mailin-intro">
+    <div class="mailin-intro" data-reveal>
       <p class="section-kicker">02 // Mail-in</p>
       <h2 class="section-title" id="mailin-title">Can’t get to the shop? Post it to us.</h2>
       <p class="section-text">
@@ -124,7 +124,7 @@ const hours = [
     <ol class="step-list">
       {
         mailSteps.map((s) => (
-          <li class="step">
+          <li class="step" data-reveal>
             <span class="step-number">{s.n}</span>
             <div class="step-body">
               <h3 class="step-title">{s.title}</h3>
@@ -137,8 +137,8 @@ const hours = [
   </section>
 
   <section class="warranty" id="warranty" aria-labelledby="warranty-title">
-    <p class="warranty-figure" aria-hidden="true">60 days</p>
-    <div class="warranty-body">
+    <p class="warranty-figure" aria-hidden="true" data-reveal>60 days</p>
+    <div class="warranty-body" data-reveal>
       <p class="section-kicker">03 // Warranty</p>
       <h2 class="section-title" id="warranty-title">Same fault again? That’s on us.</h2>
       <p class="section-text">
@@ -150,7 +150,7 @@ const hours = [
   </section>
 
   <section class="contact" id="contact" aria-labelledby="contact-title">
-    <div class="contact-intro">
+    <div class="contact-intro" data-reveal>
       <p class="section-kicker">04 // Visit or call</p>
       <h2 class="section-title" id="contact-title">Bring it in. We’ll take a look.</h2>
       <p class="section-text">
@@ -161,7 +161,7 @@ const hours = [
         <a class="btn-secondary" href="#repairs">See what we fix</a>
       </div>
     </div>
-    <div class="contact-card">
+    <div class="contact-card" data-reveal>
       <div class="contact-block">
         <h3 class="contact-label">Shop</h3>
         <div class="contact-row">

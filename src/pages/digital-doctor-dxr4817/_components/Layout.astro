@@ -38,6 +38,13 @@ const favicon =
       rel="stylesheet"
     />
     <title>{title}</title>
+    <script is:inline>
+      // Opt in to scroll reveals only when the browser can run them and the
+      // visitor hasn't asked for reduced motion; otherwise content shows as-is.
+      if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('motion');
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -46,5 +53,44 @@ const favicon =
       <slot />
     </main>
     <Footer />
+    <script>
+      // Lenis smooth scrolling. Skipped for visitors who prefer reduced
+      // motion, who keep the browser's native scroll.
+      import Lenis from 'lenis';
+      import 'lenis/dist/lenis.css';
+
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        new Lenis({
+          autoRaf: true,
+          lerp: 0.1,
+          // In-page links (nav, buttons) glide to their section and stop
+          // below the sticky header, matching scroll-padding-top.
+          anchors: { offset: -96 },
+        });
+      }
+    </script>
+    <script is:inline>
+      if (document.documentElement.classList.contains('motion')) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                const el = e.target;
+                el.classList.add('is-visible');
+                io.unobserve(el);
+                // Once it has settled, hand the element back to its normal
+                // styles so the stagger delays don't slow later hovers.
+                setTimeout(() => {
+                  el.removeAttribute('data-reveal');
+                  el.classList.remove('is-visible');
+                }, 1200);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px' }
+        );
+        document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+      }
+    </script>
   </body>
 </html>
