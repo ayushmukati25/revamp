@@ -62,7 +62,9 @@ const favicon =
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
         new Lenis({
           autoRaf: true,
-          lerp: 0.1,
+          // Higher lerp = snappier catch-up. 0.115 is ~15% quicker than
+          // Lenis's default of 0.1.
+          lerp: 0.115,
           // In-page links (nav, buttons) glide to their section and stop
           // below the sticky header, matching scroll-padding-top.
           anchors: { offset: -96 },
